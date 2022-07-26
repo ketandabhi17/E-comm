@@ -116,12 +116,18 @@ class adminController {
         .cookie("auth-token", token)
         .set("Auth-token", token)
         .json({ status: true, data: token });
-
     } else {
       return res
         .status(400)
         .json({ status: false, data: "Invalid Credentials" });
     }
+  };
+
+  public signout = async (req: RequestUser, res: Response) => {
+    res.clearCookie("auth-token");
+    res.status(200).json({
+      msg: "You're successfully signed out.......!!!!!!!!",
+    });
   };
 }
 

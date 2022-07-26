@@ -1,6 +1,7 @@
 import express from "express";
 import AdminController from "../controllers/adminController";
 import UserValidator from "../validations/userValidator";
+import isLoggedin from "../Middlewares/isLoggedin"
 
 const userValidator = new UserValidator();
 const adminController = new AdminController();
@@ -17,9 +18,9 @@ class adminRoutes {
       .route("/register")
       .post(userValidator.validateUser, adminController.Register);
 
-      this.router
-      .route('/login')
-      .post(adminController.Login)
+    this.router.route("/login").post(adminController.Login);
+
+    this.router.route("/signout").post(isLoggedin,adminController.signout)
   }
 }
 
