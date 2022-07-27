@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 // import {v2 as cloudinary} from "cloudinary";
 import path from "path";
+import cors from 'cors'
 import userRouter from "./routes/userRoutes";
 import adminRouter from "./routes/adminRoutes";
 import categoryRouter from "./routes/categoryRoutes";
@@ -34,6 +35,7 @@ class App {
   }
 
   private middlewares(): void {
+    this.app.use(cors())
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use("/public",express.static(path.join(__dirname, "uploads")));
@@ -41,7 +43,7 @@ class App {
 
   private routes(): void {
     this.app.use("/api/user", userRoutes);
-    this.app.use("/api/admin", adminRoutes);
+    this.app.use("/api/admin",  adminRoutes);
     this.app.use("/api/category", categoryRoutes);
     this.app.use("/api/product", productRoutes);
     this.app.use("/api/cart", cartRoutes);

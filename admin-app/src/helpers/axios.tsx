@@ -1,14 +1,12 @@
-import axios from "axios";
-import { api } from "../urlconfig";
+import axios from 'axios'
+import { api } from '../urlconfig'
 
 const axiosInstance = axios.create({
-  baseURL: api,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": "true",
+    baseURL:api,
+    headers:{
+        'Content-type':'application/json',
+        'Authorization':''
+    }
+})
 
-    //     'Authorization'
-  },
-});
-
-export default axiosInstance;
+export default axiosInstance

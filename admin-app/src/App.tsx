@@ -5,12 +5,13 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Containers/Home";
 import Signin from "./Containers/Signin";
 import Singup from "./Containers/Signup";
+import PrivateRoute from "./Components/HOC/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <PrivateRoute path="/" element={<Home />}/>
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Singup />} />
       </Routes>

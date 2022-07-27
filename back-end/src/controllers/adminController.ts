@@ -75,6 +75,7 @@ class adminController {
   };
 
   public Login = async (req: RequestUser, res: Response) => {
+    // console.log(req.body)
     const { email, userPassword } = req.body;
     if (!email) {
       return res
@@ -109,13 +110,13 @@ class adminController {
         process.env.JWT_USER_LOGIN_SECRET_KEY as string
       );
 
-      await user.save();
+      const u = await user.save();
 
       return res
         .status(200)
         .cookie("auth-token", token)
         .set("Auth-token", token)
-        .json({ status: true, data: token });
+        .json({ status: true, data: token, user: u  });
     } else {
       return res
         .status(400)

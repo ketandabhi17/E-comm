@@ -9,19 +9,18 @@ import Input from "../../Components/UI/Input";
 
 const Signin = (props: any) => {
   const [email, setEmail] = useState<string | undefined>();
-  const [password, setPassword] = useState<string | undefined>();
+  const [userPassword, setPassword] = useState<string | undefined>();
   const [error, setError] = useState();
   const dispatch = useDispatch();
 
-  const userLogin = (e: any) => {
+  const userLogin = async (e: any) => {
     e.preventDefault();
     const user = {
       email,
-      password,
+      userPassword,
     };
-
-    const a: any = login(user);
-    dispatch(a);
+    const a:any = await login(user)
+    dispatch(a)
   };
 
   return (
@@ -35,7 +34,7 @@ const Signin = (props: any) => {
                 controlId="email"
                 label="Email"
                 placeholder="Enter Your Email"
-                value={email ?? ''}
+                value={email ?? ""}
                 type="text"
                 onChange={(e: any) => setEmail(e.target.value)}
               />
@@ -44,7 +43,7 @@ const Signin = (props: any) => {
                 controlId="password"
                 label="Password"
                 placeholder="Enter Your Password"
-                value={password ?? ''} 
+                value={userPassword ?? "  "}
                 type="password"
                 onChange={(e: any) => setPassword(e.target.value)}
               />
